@@ -11,5 +11,5 @@ CREATE EXTERNAL TABLE reddit
    word STRING,
    count INT
 )
-ROW FORMAT DELIMITED FIELDS TERMINATED BY ' '
-LOCATION '/user/cloudera/redditImpala';
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' 
+LOCATION '/user/cloudera/redditprofiler/output';

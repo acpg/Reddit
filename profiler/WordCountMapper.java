@@ -19,7 +19,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String[] words = (title+" "+line).split(" ");
 	for(String word:words) {
 		if(word != null && !word.isEmpty() && word.length() > 1) {
-			context.write(new Text(year+","+month+","+word), new IntWritable(1));
+			context.write(new Text(year+","+month+","+word+","), new IntWritable(1));
 		}
 	}
 }
