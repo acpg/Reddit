@@ -15,7 +15,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	line = line.substring(ii+1);
 	String[] words = line.split(" ");
 	for(String word:words) {
-		word = word.replaceAll("[^a-z0-9]", "");
+		word = word.replaceAll("[^a-z0-9]", " ");
 		context.write(new Text(title), new Text(word));
 	}
 }

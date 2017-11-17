@@ -8,7 +8,7 @@ import credentials
 
 reddit = credentials.mycredentials()
 
-with open('input.json', 'w') as output:
+with open('../data/reddit_raw', 'w') as output:
 	for submission in reddit.subreddit('bitcoin').top('all'): 
 		list_of_items = []
 		list_of_items.append(submission.title.encode("utf-8"))
