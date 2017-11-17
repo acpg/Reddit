@@ -2,3 +2,5 @@ credentials*
 input*
 **data
 .DS_Store
+*.class
+*.jar

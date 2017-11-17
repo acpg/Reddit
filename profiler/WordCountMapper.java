@@ -10,10 +10,17 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 @Override
 public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 	String line = value.toString();
-	int ii = line.indexOf("")
-	String[] words = line.split(" |\"|,");
+	int ii = line.indexOf("\", ")+1;
+	String title = line.substring(0,ii);
+	String year = line.substring(ii+3,ii+7);
+	String month = line.substring(ii+8,ii+10);
+	ii = line.lastIndexOf(",")+1;
+	line = line.substring(ii);
+	String[] words = (title+" "+line).split(" ");
 	for(String word:words) {
-		context.write(new Text(word.toLowerCase()), new IntWritable(1));
+		if(word != null && !word.isEmpty() && word.length() > 1) {
+			context.write(new Text(year+","+month+","+word), new IntWritable(1));
+		}
 	}
 }
 }
