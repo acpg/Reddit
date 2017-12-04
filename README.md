@@ -10,7 +10,8 @@ The cleaned data gets profiled with MapReduce on the profiler folder.
 
 The sql file then creates a table in impala for our analytic.
 Output the file in a csv file with the command 
+```
 impala-shell -B -q 'select * from reddit_final' -o data/reddit_final.csv --print_header '--outputdelimiter=,'
-
+```
 
 

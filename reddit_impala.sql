@@ -14,4 +14,6 @@ CREATE EXTERNAL TABLE reddit_table
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' 
 LOCATION '/user/cloudera/redditprofiler/output';
 
-CREATE TABLE reddit_final AS SELECT date_sub(add_months(cast(concat_ws('-',year,month,'01') as timestamp),1),1) as date_month, word, count from reddit_table;
+DROP TABLE IF EXISTS reddit_final;
+CREATE TABLE reddit_final AS SELECT date_sub(add_months(cast(concat_ws('-',year,month,'01') as timestamp),1),1) as date_month, word, count 
+	FROM reddit_table WHERE count>1 ORDER BY count;
