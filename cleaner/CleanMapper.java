@@ -9,6 +9,8 @@ public class CleanMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 @Override
 public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+	// common words that we will ignore
+	String[] common = {"an","and","by","for","in","is","on","that","the","this","to"};
 	String line = (value.toString()).toLowerCase().substring(1);
 	int ii = line.indexOf("[");
 	String title = line.substring(0,ii);
@@ -23,7 +25,10 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	for(String word:words) {
 		word = word.replaceAll("\"|\\\"|'|`","");
 		word = word.replaceAll("[^a-z0-9]", " ");
-		context.write(new Text(title), new Text(word));
+		// if not a common word
+		if(!common.contains(word)){
+			context.write(new Text(title), new Text(word));
+		}
 	}
 }
 }
