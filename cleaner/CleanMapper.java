@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -10,7 +11,7 @@ public class CleanMapper extends Mapper<LongWritable, Text, Text, Text> {
 @Override
 public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 	// common words that we will ignore, https://en.wikipedia.org/wiki/Most_common_words_in_English
-	String[] common = { "a",
+	String[] common = { "a", "an", 
 						 "about",
 						 "after",
 						 "all",
@@ -44,7 +45,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "him",
 						 "his",
 						 "how",
-						 "I",
+						 "i",
 						 "if",
 						 "in",
 						 "into",
@@ -123,9 +124,9 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String[] words = line.split(" ");
 	for(String word:words) {
 		word = word.replaceAll("\"|\\\"|'|`","");
-		word = word.replaceAll("[^a-z0-9]", " ");
+		word = word.replaceAll("[^a-z0-9]", " ").trim();
 		// if not a common word
-		if(!common.contains(word)){
+		if(!Arrays.asList(common).contains(word)){
 			context.write(new Text(title), new Text(word));
 		}
 	}
