@@ -18,19 +18,19 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "also",
 						 "an",
 						 "and",
-						 "any",
+						 "any","are",
 						 "as",
 						 "at",
 						 "back",
-						 "be",
+						 "be","been",
 						 "because",
 						 "but",
 						 "by",
 						 "can",
 						 "come",
 						 "could",
-						 "day",
-						 "do",
+						 "day","did",
+						 "do","dont",
 						 "even",
 						 "first",
 						 "for",
@@ -39,17 +39,17 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "give",
 						 "go",
 						 "good",
-						 "have",
+						 "have","has","hasnt",
 						 "he",
 						 "her",
 						 "him",
 						 "his",
 						 "how",
-						 "i",
+						 "i","im",
 						 "if",
 						 "in",
-						 "into",
-						 "it",
+						 "into","is","isn","isnt",
+						 "it","ive",
 						 "its",
 						 "just",
 						 "know",
@@ -80,7 +80,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "some",
 						 "take",
 						 "than",
-						 "that",
+						 "that","thats",
 						 "the",
 						 "their",
 						 "them",
@@ -96,13 +96,13 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "up",
 						 "us",
 						 "use",
-						 "want",
+						 "want","was",
 						 "way",
 						 "we",
 						 "well",
 						 "what",
 						 "when",
-						 "which",
+						 "which","while",
 						 "who",
 						 "will",
 						 "with",
@@ -120,10 +120,14 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	line = line.substring(ii);
 	String[] words = (title+" "+line).split(" ");
 	for(String word:words) {
+		// check if empty or single characters
 		if(word != null && !word.isEmpty() && word.length() > 1) {
-			// if not a common word
-			if(!Arrays.asList(common).contains(word)){
-				context.write(new Text(year+","+month+","+word+","), new IntWritable(1));
+			//check if it contains a character
+			if(word.contains("[a-z]+")){
+				// check if not a common word
+				if(!Arrays.asList(common).contains(word)){
+					context.write(new Text(year+","+month+","+word+","), new IntWritable(1));
+				}
 			}
 		}
 	}
