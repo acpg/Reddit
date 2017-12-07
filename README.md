@@ -1,6 +1,6 @@
 # Reddit
 
-This repository gets Reddit data asociated with Bitcoin use.
+This repository gets Reddit data asociated with Bitcoin use. The following code works for the Cloudera VM.
 
 The python script in the scraping folder gets the initial data. You can modify the code itself with your own credentials or add a credentials.py file. The data will be stored in a *Data* folder in a different file per day.
 

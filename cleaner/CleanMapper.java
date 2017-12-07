@@ -10,7 +10,7 @@ public class CleanMapper extends Mapper<LongWritable, Text, Text, Text> {
 @Override
 public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 	String line = (value.toString()).toLowerCase().substring(1);
-	int ii = line.indexOf("[");
+	int ii = line.indexOf(", [\"");
 	String title = line.substring(0,ii);
 	String[] titles = title.split("\", \"");
 	titles[0] = titles[0].replaceAll("\"|\\\"|'|`","");
