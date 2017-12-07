@@ -3,4 +3,5 @@ input*
 .DS_Store
 *.class
 *.jar
-data/
+data/*
+env/*
