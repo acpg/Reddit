@@ -19,7 +19,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 		titles[1] = titles[1].replaceAll("\"","");
 		titles[0] = titles[0].replaceAll("[^a-z0-9]"," ");
 		titles[0] = titles[0].trim();
-		title = titles[0]+", "+titles[1];
+		title = titles[0]+", "+titles[1]+", ";
 		line = line.substring(ii+1);
 		String[] words = line.split(" ");
 		for(String word:words) {
