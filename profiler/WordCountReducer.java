@@ -10,12 +10,11 @@ public class WordCountReducer extends Reducer<Text, Text, Text, Text> {
 		int mysum = 0;
 		int mycount = 0;
 		for (Text value : values) { 
-			//String[] myvals = value.toString().split(",");
-			//mysum += Integer.parseInt(myvals[0]);
-			//mycount += Integer.parseInt(myvals[1]);
-			mycount+=Integer.parseInt(value.toString());
+			String[] myvals = value.toString().split(",");
+			mysum += Integer.parseInt(myvals[0]);
+			mycount += Integer.parseInt(myvals[1]);
 		}
-		//String finalval = String.valueOf(mysum)+","+String.valueOf(mycount);
-		context.write(key, new Text(String.valueOf(mycount)));
+		String finalval = String.valueOf(mysum)+","+String.valueOf(mycount);
+		context.write(key, new Text(finalval));
 	}
 }

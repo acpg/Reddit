@@ -122,10 +122,10 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 		// check if empty or single characters
 		if(word != null && !word.isEmpty() && word.length() > 1) {
 			//check if it contains a character
-			if(word.contains("[a-z]+")){
+			if(word.matches("[a-z]+")){
 				// check if not a common word
 				if(!Arrays.asList(common).contains(word)){
-					context.write(new Text(date+","+word+","), new Text("1"));
+					context.write(new Text(date+","+word+","), new Text(score+","+"1"));
 				}
 			}
 		}
