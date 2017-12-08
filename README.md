@@ -26,7 +26,7 @@ The cleaned data gets profiled with MapReduce on the profiler folder.
 ```
 javac -classpath `yarn classpath` -d . WordCountMapper.java
 javac -classpath `yarn classpath` -d . WordCountReducer.java
-javac -classpath `yarn classpath':. -d . WordCount.java
+javac -classpath `yarn classpath`:. -d . WordCount.java
 jar -cvf WordCount.jar *.class
 hdfs dfs -rmr /user/apg367/redditprofiler
 hadoop jar WordCount.jar WordCount /user/apg367/redditcleaner /user/apg367/redditprofiler
@@ -36,8 +36,8 @@ The sql file then creates a table in impala for our analytic.
 Run the sql file and output the file in a csv file with the following commands.
 
 ```
-impala-shell -i compute-1-1 -f reddit_impala.sql
-impala-shell -i compute-1-1 -B -q 'select * from reddit' -o output/reddit_final.csv --print_header '--output_delimiter=,'
+impala-shell -i compute-2-4 -f reddit_impala.sql
+impala-shell -i compute-2-4 -B -q 'select * from reddit' -o output/reddit_final.csv --print_header '--output_delimiter=,'
 ```
 
 
