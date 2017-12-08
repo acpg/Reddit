@@ -115,7 +115,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String date = line[1].trim().substring(0,7);
 	String score = line[2].trim();
 	int ncomment = Integer.parseInt(line[3].trim());
-	String comments = line.[line.length-1];
+	String comments = line[line.length-1];
 	// we take both title and comments
 	String[] words = (title+" "+comments).split(" ");
 	for(String word:words) {
@@ -125,7 +125,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 			if(word.contains("[a-z]+")){
 				// check if not a common word
 				if(!Arrays.asList(common).contains(word)){
-					context.write(new Text(date+","+word+","), new Text(score+","+"1"));
+					context.write(new Text(date+","+word+","), new Text("1"));
 				}
 			}
 		}
