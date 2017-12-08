@@ -115,9 +115,9 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String date = line[1].trim().substring(0,7);
 	String score = line[2].trim();
 	int ncomment = Integer.parseInt(line[3].trim());
-	ii = line.lastIndexOf(",")+1;
-	line = line.substring(ii);
-	String[] words = (title+" "+line).split(" ");
+	String comments = line.[line.length-1];
+	// we take both title and comments
+	String[] words = (title+" "+comments).split(" ");
 	for(String word:words) {
 		// check if empty or single characters
 		if(word != null && !word.isEmpty() && word.length() > 1) {
