@@ -114,7 +114,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String title = line[0].trim();
 	String date = line[1].trim().substring(0,7);
 	String score = line[2].trim();
-	String ncomment = Integer.parseInt(line[3].trim());
+	String ncomment = line[3].trim();
 	String comments = line[line.length-1];
 	// we take both title and comments
 	String[] words = (title+" "+comments).split(" ");
