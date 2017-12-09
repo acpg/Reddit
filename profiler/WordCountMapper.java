@@ -29,7 +29,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "come",
 						 "could",
 						 "day","did",
-						 "do","dont",
+						 "do","does","dont",
 						 "even",
 						 "first",
 						 "for",
@@ -76,7 +76,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "see",
 						 "she","should",
 						 "so",
-						 "some",
+						 "some","still",
 						 "take",
 						 "than",
 						 "that","thats",
@@ -90,7 +90,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "think",
 						 "this","through","throughout","thus",
 						 "time",
-						 "to","toward","towards",
+						 "to","too","toward","towards",
 						 "two","unto",
 						 "up",
 						 "us",
@@ -114,7 +114,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 	String title = line[0].trim();
 	String date = line[1].trim().substring(0,7);
 	String score = line[2].trim();
-	int ncomment = Integer.parseInt(line[3].trim());
+	String ncomment = Integer.parseInt(line[3].trim());
 	String comments = line[line.length-1];
 	// we take both title and comments
 	String[] words = (title+" "+comments).split(" ");
@@ -125,7 +125,7 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 			if(word.matches("[a-z]+")){
 				// check if not a common word
 				if(!Arrays.asList(common).contains(word)){
-					context.write(new Text(date+","+word+","), new Text(score+","+"1"));
+					context.write(new Text(date+","+word+","), new Text(score+","+ncomment+","+"1"));
 				}
 			}
 		}
