@@ -13,7 +13,7 @@ LOCATION '/user/apg367/redditprofiler';
 DROP TABLE IF EXISTS reddit;
 CREATE TABLE reddit AS 
 -- modified from https://community.hortonworks.com/questions/24667/hive-top-n-records-within-a-group.html
-SELECT date_sub(add_months(cast(concat_ws('-',month,'01') as timestamp),1),1) as month, word, count, score FROM (
+SELECT from_unixtime(unix_timestamp(date_sub(add_months(cast(concat_ws('-',month,'01') as timestamp),1),1)), 'yyyy-MM-dd') as month, word, count, score FROM (
 SELECT month, word, count, score, 
 rank() over ( partition by month ORDER BY count DESC) AS rank 
 FROM reddit_table ) t WHERE rank <= 10; --top ten words
