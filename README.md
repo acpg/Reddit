@@ -15,7 +15,7 @@ The raw data gets cleaned with the MapReduce on the cleaner folder.
 ```
 javac -classpath `yarn classpath` -d . CleanMapper.java
 javac -classpath `yarn classpath` -d . CleanReducer.java
-javac -classpath `yarn classpath':. -d . Clean.java
+javac -classpath `yarn classpath`:. -d . Clean.java
 jar -cvf Clean.jar *.class
 hdfs dfs -rmr /user/apg367/redditcleaner
 hadoop jar Clean.jar Clean /user/apg367/redditraw /user/apg367/redditcleaner
@@ -36,6 +36,8 @@ The sql file then creates a table in impala for our analytic.
 Run the sql file and output the file in a csv file with the following commands.
 
 ```
+hdfs dfs -chown apg367 /user/apg367
+hdfs dfs -chmod -R 777 /user/apg367
 impala-shell -i compute-2-4 -f reddit_impala.sql
 impala-shell -i compute-2-4 -B -q 'select * from reddit' -o output/reddit_final.csv --print_header '--output_delimiter=,'
 ```
