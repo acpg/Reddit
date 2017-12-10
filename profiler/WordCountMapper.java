@@ -56,9 +56,9 @@ public void map(LongWritable key, Text value, Context context) throws IOExceptio
 						 "look",
 						 "make","many",
 						 "me","more",
-						 "most","much",
+						 "most","much"
 						 "my","need",
-						 "new",
+						 "new","nhttp","nhttps",
 						 "no",
 						 "not",
 						 "now",
