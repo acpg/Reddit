@@ -10,15 +10,10 @@ import credentials
 reddit = credentials.mycredentials()
 # date looping modified from giltay 2008
 # https://stackoverflow.com/questions/153584/how-to-iterate-over-a-timespan-after-days-hours-weeks-and-months-in-python
-start_date = datetime(2015,1,11,0,0,0)
-#end_date = datetime(2011,1,1,0,0,0)
-#month_step = 1
+start_date = datetime(2017,12,7,0,0,0)
 delta = timedelta(days=1)
 current_date = start_date
-for i in range(0,1000):
-	#carry, new_month = divmod(current_date.month - 1 + month_step, 12)
-	#new_month += 1
-	#new_date = current_date.replace(year=current_date.year + carry,month=new_month)
+for i in range(4):
 	new_date = current_date + delta
 	with open('../data/reddit_raw'+current_date.strftime("%Y%m%d"), 'w') as output:
 		for submission in reddit.subreddit('bitcoin').submissions(int(current_date.strftime('%s')),int(new_date.strftime('%s'))-1): 

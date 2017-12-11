@@ -33,13 +33,14 @@ hadoop jar WordCount.jar WordCount /user/apg367/redditcleaner /user/apg367/reddi
 ```
 
 The sql file then creates a table in impala for our analytic.
-Run the sql file and output the file in a csv file with the following commands.
+Run the sql file and output the file in a comma separated file with the following commands.
 
 ```
 hdfs dfs -chown apg367 /user/apg367
 hdfs dfs -chmod -R 777 /user/apg367
 impala-shell -i compute-2-4 -f reddit_impala.sql
-impala-shell -i compute-2-4 -B -q 'select * from reddit' -o output/reddit_final.csv --print_header '--output_delimiter=,'
+impala-shell -i compute-2-4 -B -q 'select * from reddit_table' -o output/reddit_table --print_header '--output_delimiter=,'
+impala-shell -i compute-2-4 -B -q 'select * from reddit' -o output/reddit_final --print_header '--output_delimiter=,'
 ```
 
 
